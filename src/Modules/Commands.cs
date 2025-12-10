@@ -1,7 +1,4 @@
-﻿using Discord;
-using Discord.Commands;
-using Discord.Rest;
-using DiscrodBotArch.src;
+﻿using Discord.Commands;
 
 namespace DiscrodBotArch.src.Modules
 {

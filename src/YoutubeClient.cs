@@ -1,5 +1,5 @@
 ﻿using FFMpegCore;
-using System.Diagnostics;
+using YoutubeExplode.Videos.Streams;
 
 
 namespace DiscrodBotArch.src
@@ -19,13 +19,21 @@ namespace DiscrodBotArch.src
             await OnStart(sanitizedTitle);
 
             Console.WriteLine($"Geting all available streams of: {videoUrl}");
+            StreamManifest? streamManifest = null;
+            try
+            {
+                streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
+            }
+            catch (Exception ex)
+            { 
+                Console.WriteLine("Błąd podczas pobierania danych z yt: " + ex.Message);
+                throw new Exception($"Błąd podczas pobierania danych z yt {sanitizedTitle}: {ex.Message}"); 
+            }
+            
+            var muxedStreams = streamManifest?.GetMuxedStreams().OrderByDescending(s => s.VideoQuality).ToList() ?? new List<MuxedStreamInfo>();
 
-            var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
-
-            var muxedStreams = streamManifest.GetMuxedStreams().OrderByDescending(s => s.VideoQuality).ToList();
-
-            var videoStream = streamManifest.GetVideoOnlyStreams().OrderByDescending(s => s.VideoQuality).ToList();
-            var audioStream = streamManifest.GetAudioStreams().ToList();
+            var videoStream = streamManifest?.GetVideoOnlyStreams().OrderByDescending(s => s.VideoQuality).ToList() ?? new List<VideoOnlyStreamInfo>();
+            var audioStream = streamManifest?.GetAudioStreams().ToList() ?? new List<IAudioStreamInfo>();
 
 
 
