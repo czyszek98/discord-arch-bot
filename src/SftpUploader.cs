@@ -16,7 +16,7 @@ namespace DiscordArchBot.src
 
             // Ścieżki
             string localFilePath = $"tmp/{fileName}";
-            string remoteFilePath = Environment.GetEnvironmentVariable("SFTP_ARCH_PATH") ?? "";
+            string remoteFilePath = (Environment.GetEnvironmentVariable("SFTP_ARCH_PATH") ?? "") + $"/{fileName}";
 
             using var sftp = new SftpClient(host, port, username, password);
             try

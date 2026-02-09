@@ -66,7 +66,7 @@ namespace DiscordArchBot.src
             if (message.Author.IsBot) return;
 
             int argPos = 0;
-            if (message.HasStringPrefix("!", ref argPos) && message.Channel.Name == Environment.GetEnvironmentVariable("DISCORD_TOKEN"))
+            if (message.HasStringPrefix("!", ref argPos) && message.Channel.Name == Environment.GetEnvironmentVariable("DISCORD_CHANNEL_NAME"))
             {
                 var result = await _commands.ExecuteAsync(context, argPos, _services);
                 if (!result.IsSuccess) Console.WriteLine(result.ErrorReason);
