@@ -2,7 +2,7 @@
 using YoutubeExplode.Videos.Streams;
 
 
-namespace DiscrodBotArch.src
+namespace DiscordArchBot.src
 {
     internal class YTDownloadClient
     {

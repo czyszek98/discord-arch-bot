@@ -1,1 +1,1 @@
-# DiscrodBotArch
+# DiscordArchBot

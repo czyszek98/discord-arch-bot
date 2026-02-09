@@ -1,6 +1,6 @@
 ﻿using Discord.Commands;
 
-namespace DiscrodBotArch.src.Modules
+namespace DiscordArchBot.src.Modules
 {
     public class Commands : ModuleBase<SocketCommandContext>
     {

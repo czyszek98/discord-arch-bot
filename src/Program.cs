@@ -4,7 +4,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DiscrodBotArch.src
+namespace DiscordArchBot.src
 {
     class Program
     {

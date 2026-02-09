@@ -2,7 +2,7 @@
 using Renci.SshNet;
 
 
-namespace DiscrodBotArch.src
+namespace DiscordArchBot.src
 {
     internal class SftpUploader
     {
