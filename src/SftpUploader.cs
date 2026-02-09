@@ -1,4 +1,5 @@
-﻿using Renci.SshNet;
+﻿using AngleSharp.Text;
+using Renci.SshNet;
 
 
 namespace DiscrodBotArch.src
@@ -9,18 +10,18 @@ namespace DiscrodBotArch.src
         static public void Upload(string fileName)
         {
             string host = Environment.GetEnvironmentVariable("SFTP_HOST") ?? "";
-            int port = 22;
+            int port = int.Parse(Environment.GetEnvironmentVariable("SFTP_PORT") ?? "22");
             string username = Environment.GetEnvironmentVariable("SFTP_USER") ?? "";
             string password = Environment.GetEnvironmentVariable("SFTP_PASSWORD") ?? "";
 
             // Ścieżki
             string localFilePath = $"tmp/{fileName}";
-            string remoteFilePath = $"/GamersZone/Archiwum/{fileName}";
+            string remoteFilePath = Environment.GetEnvironmentVariable("SFTP_ARCH_PATH") ?? "";
 
             using var sftp = new SftpClient(host, port, username, password);
             try
             {
-                Console.WriteLine($"Łączenienie z  SFTP: {username}@{host} -22");
+                Console.WriteLine($"Łączenienie z  SFTP: {username}@{host} -p {port}");
                 sftp.Connect();
                 Console.WriteLine("Połączono z SFTP.");
 

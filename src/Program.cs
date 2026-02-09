@@ -66,7 +66,7 @@ namespace DiscrodBotArch.src
             if (message.Author.IsBot) return;
 
             int argPos = 0;
-            if (message.HasStringPrefix("!", ref argPos) && message.Channel.Name == "📖archiwum-x")
+            if (message.HasStringPrefix("!", ref argPos) && message.Channel.Name == Environment.GetEnvironmentVariable("DISCORD_TOKEN"))
             {
                 var result = await _commands.ExecuteAsync(context, argPos, _services);
                 if (!result.IsSuccess) Console.WriteLine(result.ErrorReason);
